@@ -82,26 +82,7 @@ fotografia) VALUES (?, ?, ?, ?, ?, ?, ?)",
   } 
 }; 
 
-  export const putProductos = async (req, res) => {
-    try {
-      const { id } = req.params; // Obtener el ID del producto desde los parámetros de la URL
-      const { name, description, price_cost, price_sale, quantity, image } = req.body;
-  
-      // Actualizar el producto en la base de datos
-      const [result] = await pool.query(
-        "UPDATE productos SET nombre = ?, descripcion = ?, precio_costo = ?, precio_venta = ?, cantidad = ?, fotografia = ? WHERE id = ?",
-        [name, description, price_cost, price_sale, quantity, image, id]
-      );
-  
-      // Verificar si se actualizó algún registro
-      if (result.affectedRows === 0) {
-        return res.status(404).json({ message: "Producto no encontrado" });
-      }
-      res.json({ message: "Producto actualizado" });
-    } catch (error) {
-      return res.status(500).json({ message: 'Algo salió mal' });
-    }
-  };
+ 
   
 
   export const deleteProductos = async (req, res) => {
